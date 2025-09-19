@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Intelligent Traffic Signal Simulation</title>
+
+    <!-- Tailwind CDN (keeps original styling utilities) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="traffic.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="text-3xl font-bold">Intelligent Traffic Signal Simulation</h1>
+            <p class="text-sm mt-2 opacity-90">Modeling dynamic traffic flow and emergency prioritization</p>
+        </div>
+
+        <div class="control-panel">
+            <button class="start" id="startSimulation">Start Simulation</button>
+            <button class="stop" id="stopSimulation">Stop Simulation</button>
+            <button class="add-emergency" id="addEmergencyVehicle">Add Emergency Vehicle</button>
+            <button class="shortest-path" id="findPath">Find Shortest Path</button>
+        </div>
+
+        <div class="main-content">
+            <div class="simulation-area" id="simulationArea">
+                <!-- Intersections will be rendered here by JavaScript -->
+                <p class="text-gray-500 text-center">Loading simulation...</p>
+            </div>
+            <div class="dashboard" id="dashboard">
+                <h3 class="dashboard-title">Simulation Dashboard</h3>
+                <div id="dashboardContent">
+                    <p class="text-gray-600">No data yet. Start the simulation to see updates.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shortest Path Modal -->
+    <div id="pathModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('pathModal')">&times;</span>
+            <h2 class="text-xl font-bold mb-4">Find Shortest Path</h2>
+            <div class="modal-body">
+                <label for="startNode" class="block text-left mb-1">Start Intersection:</label>
+                <select id="startNode"></select>
+
+                <label for="endNode" class="block text-left mb-1 mt-3">End Intersection:</label>
+                <select id="endNode"></select>
+
+                <label class="block text-left mt-3">
+                    <input type="checkbox" id="avoidCongested" class="mr-2 rounded-sm" checked>
+                    Avoid Congested Roads
+                </label>
+            </div>
+            <div class="modal-footer">
+                <button onclick="calculateAndDisplayPath()">Calculate Path</button>
+            </div>
+            <div id="pathResult" class="mt-4 text-left text-sm text-gray-700"></div>
+        </div>
+    </div>
+
+    <!-- External JS -->
+    <script src="traffic.js"></script>
+</body>
+</html>
